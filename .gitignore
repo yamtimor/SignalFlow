@@ -1,0 +1,31 @@
+# uv virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Pyright / VSCode / mypy / etc.
+.mypy_cache/
+.pytest_cache/
+.pyright/
+.vscode/
+
+# Logs
+*.log
+
+# OS crap
+.DS_Store
+Thumbs.db
+
+# Jupyter (if you ever experiment)
+.ipynb_checkpoints/
+
+# AWS CLI cache
+.aws/
+
+# Anything else custom
+.env
