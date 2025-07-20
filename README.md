@@ -1,1 +1,1 @@
-# SignalFlow
+# wsb-stock-analyzer
