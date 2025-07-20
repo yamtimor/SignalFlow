@@ -19,10 +19,11 @@ async def main():
     # pprint(wsb_sentiment)
 
     print("\n--- Top Reddit Posts ---")
+    reddit_posts = await fetch_reddit_posts()
     enriched = transform_reddit_posts(reddit_posts)
 
     print("\n--- Ticker Mentions with Sentiment ---")
-    for entry in enriched[:10]:
+    for entry in enriched:
         print(f"{entry['ticker']}: {entry['sentiment']:.2f} | {entry['title']}")
 
 if __name__ == "__main__":
