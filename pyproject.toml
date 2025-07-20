@@ -1,5 +1,5 @@
 [project]
-name = "signalflow"
+name = "wsb-stock-analyzer"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
