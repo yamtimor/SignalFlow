@@ -2,6 +2,8 @@ import asyncio
 from sources.reddit_client import fetch_reddit_posts
 from sources.tradestie_client import fetch_wsb_sentiment
 from sources.twelvedata_client import fetch_stock_data
+from transforms.reddit_transformer import transform_reddit_posts
+
 from pprint import pprint
 
 SYMBOL = "VST" 
@@ -17,9 +19,11 @@ async def main():
     # pprint(wsb_sentiment)
 
     print("\n--- Top Reddit Posts ---")
-    reddit_posts = await fetch_reddit_posts()
-    for post in reddit_posts[:30]:  # show only top 5
-        print(post.title)
+    enriched = transform_reddit_posts(reddit_posts)
+
+    print("\n--- Ticker Mentions with Sentiment ---")
+    for entry in enriched[:10]:
+        print(f"{entry['ticker']}: {entry['sentiment']:.2f} | {entry['title']}")
 
 if __name__ == "__main__":
     asyncio.run(main())
