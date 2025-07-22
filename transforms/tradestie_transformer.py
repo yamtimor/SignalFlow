@@ -1,6 +1,6 @@
 from typing import List, Dict
-from datetime import datetime
-from sources.tradestie_client import SentimentData  # <- adjust if needed
+from datetime import datetime, timezone
+from sources.tradestie_client import SentimentData  # adjust import path
 
 def transform_tradestie(data: List[SentimentData]) -> List[Dict]:
     results = []
@@ -8,8 +8,9 @@ def transform_tradestie(data: List[SentimentData]) -> List[Dict]:
     for item in data:
         record = item.model_dump()
         record["timestamp"] = (
-            datetime.fromisoformat(item.timestamp)
-            if item.timestamp else datetime.utcnow()
+            datetime.fromisoformat(item.timestamp).astimezone(timezone.utc)
+            if item.timestamp
+            else datetime.now(timezone.utc)
         )
         record["source"] = "tradestie"
         record["sentiment_flag"] = (
